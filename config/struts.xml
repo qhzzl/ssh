@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+
+	<package name="default" namespace="/" extends="struts-default">
+
+		<interceptors>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="paramsPrepareParamsStack">
+					<param name="prepare.alwaysInvokePrepare">false</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="myStack" />
+
+		<action name="queryList" class="com.atguigu.ssh.action.EmployeeAction"
+			method="queryList">
+			<result name="queryListSuccess">list.jsp</result>
+		</action>
+
+		<action name="toAddEmp" class="com.atguigu.ssh.action.EmployeeAction"
+			method="toAdd">
+			<result name="toAddSuccess">/add.jsp</result>
+		</action>
+
+		<action name="addEmp" class="com.atguigu.ssh.action.EmployeeAction"
+			method="add">
+			<result name="addSuccess" type="redirectAction">queryList</result>
+		</action>
+		
+		<action name="editEmp" class="com.atguigu.ssh.action.EmployeeAction"
+			method="edit">
+			<result name="editSuccess">update.jsp</result>
+		</action>
+		
+		<action name="updateEmp" class="com.atguigu.ssh.action.EmployeeAction"
+			method="update">
+			<result name="updateSuccess" type="redirectAction">queryList</result>
+		</action>
+		
+		<action name="deleteEmp" class="com.atguigu.ssh.action.EmployeeAction"
+			method="delete">
+			<result name="updateSuccess" type="redirectAction">queryList</result>
+		</action>
+
+	</package>
+
+</struts>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
